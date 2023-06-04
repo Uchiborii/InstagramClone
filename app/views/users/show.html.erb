@@ -2,4 +2,11 @@
 
 <p>メールアドレス：<%= @user.email %></p>
 
+<% if @user.icon? %>
+  <p>
+    <strong>プロフィール画像:</strong>
+    <%= image_tag @user.icon.url %>
+  </p>
+<% end %>
+
 <%= link_to '新規投稿', new_picture_path, class:"btn btn-primary" %>

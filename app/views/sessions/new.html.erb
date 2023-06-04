@@ -1,20 +1,20 @@
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<%= form_with(scope: :session, url: sessions_path, local: true, html: { class: "text-center" }) do |f| %>
   <div class="center-image">
-    <img class="mb-4" src="/assets/face.png" alt="" width="72" height="57">
+    <img class="mx-auto d-block mb-4" src="/assets/face.png" alt="" width="200" height="60">
   </div>
 
   <div class="message">
-    <h1 class="h3 mb-3 fw-normal">Facebookを使う仲間と繋がりを深められます。</h1>
+    <h1 class="h3 mb-3 fw-normal">Facebookを使う仲間と<br>繋がりを深められます。</h1>
   </div>
 
-  <div class="form-floating">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <div class="form-group">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
 
-  <div class="form-floating">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
 
   <div class="checkbox mb-3">
