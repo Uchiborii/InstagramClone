@@ -1,0 +1,38 @@
+<h1 class="mt-5 mb-3">プロフィール編集</h1>
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class:"w-75" %>
+  </div>
+
+  　<div class="field">
+  <%= form.label :プロフィール画像 %>
+  <%= image_tag(@user.icon.url) if @user.icon && @user.icon.url %>
+  <%= form.file_field :icon %>
+  <%= form.hidden_field :icon_cache %>
+　</div>
+
+<BR>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, class:"w-75" %>
+  </div>
+
+<BR>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, class:"w-75" %>
+  </div>
+
+<BR>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation, class:"w-75" %>
+  </div>
+
+<BR>
+  <div class="actions">
+    <%= form.submit :保存, class:"btn btn-primary mb-4" %>
+  </div>
+
+<% end %>

@@ -2,11 +2,18 @@
 
 <p>メールアドレス：<%= @user.email %></p>
 
-<% if @user.icon? %>
-  <p>
-    <strong>プロフィール画像:</strong>
+<strong>プロフィール画像：</strong>
+<p>
+  <% if @user.icon.present? %>
     <%= image_tag @user.icon.url %>
-  </p>
+  <% else %>
+    <span>画像がありません</span>
+  <% end %>
+</p>
+
+<% if @user.id == current_user.id %>
+  <%= link_to "プロフィール編集", edit_user_path(@user) %>
 <% end %>
 
+<br>
 <%= link_to '新規投稿', new_picture_path, class:"btn btn-primary" %>
