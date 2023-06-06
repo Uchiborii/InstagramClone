@@ -2,17 +2,17 @@
 
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
     <th>投稿者</th>
+    <th>コメント</th>
+    <th>画像</th>
   </tr>
 
 <% @favorites.each do |favorite| %>
   <tr>
-    <td><%= favorite.picture.title %></td>
+    <td><%= favorite.picture.user.name %></td>
     <td><%= favorite.picture.content %></td>
-    <td><%= favorite.picture.user.name%></td>
-    <td><%= link_to 'お気に入りを確認する', picture_path(favorite.picture.id) %></td>
+    <td><%= image_tag favorite.picture.image.url %></td>
+    <td><%= link_to 'お気に入りを確認する', picture_path(favorite.picture) %></td>
   </tr>
 <% end %>
 </table>

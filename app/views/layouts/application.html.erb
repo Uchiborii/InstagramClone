@@ -18,6 +18,7 @@
               <% if logged_in? %>
                 <p class="mr-3"><%= link_to "Profile", user_path(current_user.id), class:"text-white" %></p>
                 <P><%= link_to "Logout", session_path(current_user.id), method: :delete, class:"text-white" %></P>
+                <P><%= link_to "お気に入り一覧", favorites_path(current_user.id), class:"text-white" %></P>
               <% else %>
                 <p class="mr-3"><%= link_to "Sign up", new_user_path, class:"text-white" %></p>
                 <p><%= link_to "Login", new_session_path, class:"text-white" %></p>

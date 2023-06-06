@@ -32,8 +32,8 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id), notice: "プロフィールを編集しました！"
     else
       render :edit
+    end
   end
-end
 
   private
   def user_params
