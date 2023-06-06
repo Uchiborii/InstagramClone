@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
   before_action :set_picture, only: [ :show, :edit, :update, :destroy ]
 
   def index
@@ -17,6 +18,13 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    @picture = Picture.find(params[:id])
+    if @picture.user == current_user
+        render :edit
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to pictures_path
+    end
   end
 
   def create
@@ -35,12 +43,12 @@ class PicturesController < ApplicationController
   end
 
   def confirm
-    @picture = Picture.new(picture_params)
-    @picture.user_id = current_user.id
+    @picture = current_user.pictures.build(picture_params)
     render :new if @picture.invalid?
   end
 
   def update
+    @picture = Picture.find(params[:id])
     if @picture.update(picture_params)
       redirect_to pictures_path, notice: "投稿が更新されました。"
     else
@@ -49,8 +57,13 @@ class PicturesController < ApplicationController
   end
 
   def destroy
+    if @picture.user == current_user
     @picture.destroy
       redirect_to pictures_path, notice: "投稿が削除されました。"
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to pictures_path
+    end
   end
 
   private
@@ -62,5 +75,4 @@ class PicturesController < ApplicationController
   def picture_params
     params.require(:picture).permit(:image, :image_cache, :content)
   end
-
 end

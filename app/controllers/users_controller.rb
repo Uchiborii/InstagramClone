@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user
       flash[:notice] = "権限がありません"
-      redirect_to users_path
+      redirect_to pictures_path
     end
   end
 
