@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, length: { minimum: 6 }
   mount_uploader :icon, IconUploader
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
 end
