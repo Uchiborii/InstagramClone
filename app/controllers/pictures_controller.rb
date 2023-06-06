@@ -29,13 +29,13 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.new(picture_params)
     @picture = current_user.pictures.build(picture_params)
 
     if params[:back]
       render :new
     else
       if @picture.save
+        ContactMailer.contact_mail(@picture).deliver
         redirect_to pictures_path
       else
         render :new
