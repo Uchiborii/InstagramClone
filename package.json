@@ -1,6 +1,9 @@
 {
   "name": "instagram-clone",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@rails/actioncable": "^6.0.0",
